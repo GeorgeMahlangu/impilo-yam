@@ -1,0 +1,52 @@
+<div class="container survey">
+    <h1 id="title" class="text-center">Diagnose depression</h1>
+    <p id="description" class="text-center">
+        Find out if you have depression or not
+    </p>
+
+    <br />
+
+    <div class="questionHeader">
+        <div class="h3 center">
+            Please read each statement and indicate how much the statement applied to you <b>over the past few
+                weeks.</b>
+            <h6> There are no right or wrong answers.</h6>
+            <h6>Do not spend too much time on any statement. </h6>
+            <h6>The rating scale is as follows:</h6>
+            <ul>
+                <li>Did not apply to me at all - NEVER</li>
+                <li>Applied to me to some degree, or some of the time - SOMETIMES</li>
+                <li>Applied to me to a considerable degree, or a good part of time - OFTEN</li>
+                <li>Applied to me very much, or most of the time - ALMOST ALWAYS</li>
+            </ul>
+            <br />
+        </div>
+    </div>
+
+    <br />
+    <!-- <form> -->
+    <div class="form-group" *ngFor="let q of Questions; let i = index">
+
+        <label><b>{{i+1}}</b>- {{q.question}}</label>
+        <div class="form-check" *ngFor="let a of q.answers; let Ai = index">
+            <input class="form-check-input" type="radio" name="{{i}}" value="{{Ai}}" [checked]="Ai === 0" />
+            <label class="form-check-label" f>
+                {{a}}
+            </label>
+        </div>
+    </div>
+
+
+
+
+
+
+    <br />
+    <div>
+        <button id="submit" type="submit" class="btn btn-secondary" style="float: left" (click)="submit()">
+            Submit
+        </button>
+        <br><br>
+    </div>
+
+</div>
