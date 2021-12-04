@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,9 @@ export class ApiService {
     return this.http.post<any>(this.Url + 'predict', DepressionQuestions, {
       headers: headers,
     });
+  }
+  
+  async postT(DepressionQuestions: any) {
+    return axios.post(this.Url + 'predict', DepressionQuestions)
   }
 }

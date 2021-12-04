@@ -452,51 +452,21 @@ export class QuestionnaireComponent implements OnInit {
       ],
     };
 
-    console.log(JSON.stringify(DepressionQuestions));
-
-    // fetch('http://localhost:5000/predict', {
-    //   body: JSON.stringify(DepressionQuestions),
-    //   method: 'post',
-    //   headers: [
-    //     ['Access-Control-Allow-Origin', 'Access-Control-Allow-Headers'],
-    //   ],
-    // })
-    //   .then((r) => r.json())
-    //   .then((results) => console.log(results));
-
-    // fetch('https://jsonplaceholder.typicode.com/todos/1')
-    //   .then((response) => response.json())
-    //   .then((json) => console.log(json));
-
-    // fetch('http://localhost:5000/predict', {
-    //   method: 'POST',
-    //   mode: 'no-cors',
-    //   body: JSON.stringify(DepressionQuestions),
-    // })
-    //   .then((response) => {
-    //     return response.json();
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-    this.api.post(JSON.stringify(DepressionQuestions)).subscribe((results) => {
-      console.log(results);
-
-      if (results.prediction_text == 'Normal') {
-        this.router.navigateByUrl('normal');
-      } else if (results.prediction_text == 'Mild') {
-        this.router.navigateByUrl('mild');
-      } else if (results.prediction_text == 'Moderate') {
-        this.router.navigateByUrl('moderate');
-      } else if (results.prediction_text == 'Severe') {
-        this.router.navigateByUrl('severe');
-      } else if (results.prediction_text == 'Extremely Severe') {
-        this.router.navigateByUrl('extremely_severe');
-      }
-    });
+    this.api.postT(DepressionQuestions)
+      .then(({data}) => {
+        console.log(data);
+        
+        if (data.prediction_text == 'Normal') {
+          this.router.navigateByUrl('normal');
+        } else if (data.prediction_text == 'Mild') {
+          this.router.navigateByUrl('mild');
+        } else if (data.prediction_text == 'Moderate') {
+          this.router.navigateByUrl('moderate');
+        } else if (data.prediction_text == 'Severe') {
+          this.router.navigateByUrl('severe');
+        } else if (data.prediction_text == 'Extremely Severe') {
+          this.router.navigateByUrl('extremely_severe');
+        }
+      });
   }
 }
