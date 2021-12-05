@@ -398,11 +398,11 @@ export class QuestionnaireComponent implements OnInit {
     },
   ];
   results: any[] = [];
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private api: ApiService, private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
-  selectionChange(Q, A) {}
+  selectionChange(Q, A) { }
 
   submit() {
     this.results = [];
@@ -453,9 +453,10 @@ export class QuestionnaireComponent implements OnInit {
     };
 
     this.api.postT(DepressionQuestions)
-      .then(({data}) => {
+      .then(({ data }) => {
         console.log(data);
-        
+        this.api.probabilities = JSON.stringify(data.probabilities);
+
         if (data.prediction_text == 'Normal') {
           this.router.navigateByUrl('normal');
         } else if (data.prediction_text == 'Mild') {

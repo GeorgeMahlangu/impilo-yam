@@ -19,6 +19,7 @@ import { ModerateComponent } from './components/moderate/moderate.component';
 import { ExtremelySevereComponent } from './components/extremely-severe/extremely-severe.component';
 import { SevereComponent } from './components/severe/severe.component';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire.component';
+import { ChartComponent } from './shared/chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { QuestionnaireComponent } from './components/questionnaire/questionnaire
     ExtremelySevereComponent,
     SevereComponent,
     QuestionnaireComponent,
+    ChartComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -7,7 +7,8 @@ import axios from 'axios';
 })
 export class ApiService {
   Url = 'http://localhost:5000/';
-  constructor(private http: HttpClient) {}
+  data: any;
+  constructor(private http: HttpClient) { }
 
   // post(DepressionQuestions) {
   //   return this.http.post<any>(this.Url + 'predict', DepressionQuestions);
@@ -17,6 +18,13 @@ export class ApiService {
   //   return this.http.post<any>(this.Url + 'predict', DepressionQuestions);
   // }
 
+  set probabilities(v) {
+    localStorage.setItem("probabilities", v);
+  }
+
+  get probabilities() {
+    return JSON.parse(localStorage.getItem("probabilities"))
+  }
   post(DepressionQuestions) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json; charset=utf-8');
@@ -30,7 +38,7 @@ export class ApiService {
       headers: headers,
     });
   }
-  
+
   async postT(DepressionQuestions: any) {
     return axios.post(this.Url + 'predict', DepressionQuestions)
   }
