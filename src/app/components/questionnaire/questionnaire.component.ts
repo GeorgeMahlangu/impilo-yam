@@ -166,7 +166,7 @@ export class QuestionnaireComponent implements OnInit {
       ],
     },
     {
-      question: 'I felt that I was rather touch',
+      question: 'I felt that I was rather touchy',
       answers: [
         'Did not apply to me at all',
         'Applied to me to some degree, or some of the time',
@@ -398,11 +398,11 @@ export class QuestionnaireComponent implements OnInit {
     },
   ];
   results: any[] = [];
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  selectionChange(Q, A) { }
+  selectionChange(Q, A) {}
 
   submit() {
     this.results = [];
@@ -452,22 +452,21 @@ export class QuestionnaireComponent implements OnInit {
       ],
     };
 
-    this.api.postT(DepressionQuestions)
-      .then(({ data }) => {
-        console.log(data);
-        this.api.probabilities = JSON.stringify(data.probabilities);
+    this.api.postT(DepressionQuestions).then(({ data }) => {
+      console.log(data);
+      this.api.probabilities = JSON.stringify(data.probabilities);
 
-        if (data.prediction_text == 'Normal') {
-          this.router.navigateByUrl('normal');
-        } else if (data.prediction_text == 'Mild') {
-          this.router.navigateByUrl('mild');
-        } else if (data.prediction_text == 'Moderate') {
-          this.router.navigateByUrl('moderate');
-        } else if (data.prediction_text == 'Severe') {
-          this.router.navigateByUrl('severe');
-        } else if (data.prediction_text == 'Extremely Severe') {
-          this.router.navigateByUrl('extremely_severe');
-        }
-      });
+      if (data.prediction_text == 'Normal') {
+        this.router.navigateByUrl('normal');
+      } else if (data.prediction_text == 'Mild') {
+        this.router.navigateByUrl('mild');
+      } else if (data.prediction_text == 'Moderate') {
+        this.router.navigateByUrl('moderate');
+      } else if (data.prediction_text == 'Severe') {
+        this.router.navigateByUrl('severe');
+      } else if (data.prediction_text == 'Extremely Severe') {
+        this.router.navigateByUrl('extremely_severe');
+      }
+    });
   }
 }
